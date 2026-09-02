@@ -23,7 +23,7 @@ skills/
 
 | Skill                                                    | Description                                                                                                                                        |
 | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [code-review-format](skills/code-review-format/SKILL.md) | Output specification for code review and re-review: scope, dimensions, severity, numbering, evidence, introducing commit, structure, re-review, style, and self-checks |
+| [code-review-format](skills/code-review-format/SKILL.md) | Output specification for code review and re-review: scope, dimensions, severity, numbering, evidence, introducing commit, build & test, structure, re-review, style, and self-checks |
 
 ## Installation
 
