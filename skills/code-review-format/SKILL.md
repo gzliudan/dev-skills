@@ -3,7 +3,7 @@ name: code-review-format
 description: "代码评审与复审的输出规范（范围、维度、分级、编号、证据、引入提交、构建与测试、结构、复审、风格、自检）。当用户要求 review、评审、审代码、审一下、挑毛病、看 diff、复查、复审，或检查某个 commit / 分支 / PR 的改动时使用此技能。"
 description_zh: "代码评审与复审的输出规范（范围、维度、分级、编号、证据、引入提交、构建与测试、结构、复审、风格、自检）"
 description_en: "Code review and re-review output specification"
-version: 0.32.0
+version: 0.33.0
 agent_created: true
 allowed-tools: Read,Grep,Glob,Bash,read_file,search_content,search_file,list_dir,execute_command
 display_name: "code-review-format"
@@ -28,7 +28,7 @@ tags: ["code-review", "review", "re-review", "diff", "commit", "quality", "pull-
 7. 分级编号：按「分级」「编号」分配
 8. 核对：复核 `file:line`、引入提交 hash 与源码/历史一致；构建与测试结果与命令输出一致；复审另须回填上轮状态、确认代码变更
 9. 自检：证据、构建与测试、复审回填按前述规则自查；格式按「条目」「结构」「风格」逐项过
-10. 输出：套模板，删注释与占位符；措辞按「风格」
+10. 输出：套模板，删注释与占位符，空节（待确认 等）连同标题删除；措辞按「风格」
 
 ## 范围
 
@@ -149,7 +149,7 @@ tags: ["code-review", "review", "re-review", "diff", "commit", "quality", "pull-
 
 ## 待确认
 
-- 无则跳过
+- 无则整节省略：连同 `## 待确认` 标题一起删除，不输出空节、不写「无」/「暂无」等占位
 - 读得到代码且能判定不成立 → 丢弃
 - 缺调用方、配置、上下游等外部信息 → 列入待确认（不列为条目、不参与编号）
 - 每条一个列表项：`- <事项>：缺 <信息>；需确认 <问题>；若最坏情况成立则归 <级别>`
@@ -168,6 +168,7 @@ tags: ["code-review", "review", "re-review", "diff", "commit", "quality", "pull-
 评审范围 → 总体结论 → 问题清单 → 待确认
 
 - 默认输出到对话；用户指定路径以其为准
+- 待确认 无条目 → 连同标题整节删除；问题清单内空组同理（见「条目」）
 
 ## 风格
 
@@ -184,3 +185,4 @@ tags: ["code-review", "review", "re-review", "diff", "commit", "quality", "pull-
 4. 把设计偏好包装成缺陷
 5. 引入提交未经 blame / log 核实，或猜测一个 hash 填上
 6. 未实际执行构建 / 测试却写「通过」，或把跑不起来说成通过
+7. 输出空的「待确认」章节，或写「无」「暂无」等占位
